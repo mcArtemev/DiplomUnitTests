@@ -21,6 +21,6 @@ public class getPriceUnitTests {
     @Test
     public void getBunPriceShouldReturnFloat22point2(){
         float result = whiteBun.getPrice();
-        Assert.assertTrue("Название булочки не соответствует ожиданию: \"22.2\". По факту: " + result, result==22.2f);
+        Assert.assertTrue("Цена булочки не соответствует ожиданию: \"22.2\". По факту: " + result, result==22.2f);
     }
 }
