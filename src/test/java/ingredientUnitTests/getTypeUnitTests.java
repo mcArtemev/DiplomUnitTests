@@ -1,37 +1,43 @@
 package ingredientUnitTests;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(Parameterized.class)
 public class getTypeUnitTests {
 
-    private Ingredient ingredientSauce;
-    private Ingredient ingredientFilling;
+    @Parameterized.Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {IngredientType.SAUCE},
+                {IngredientType.FILLING}
+        });
+    }
+
+    @Parameterized.Parameter
+    public IngredientType ingredientType;
+
+    private Ingredient ingredient;
 
     @Before
     public void setUp() {
-        ingredientSauce = new Ingredient(IngredientType.SAUCE, "Ketchup", 1.5f);
-        ingredientFilling = new Ingredient(IngredientType.FILLING, "Sausage", 2.5f);    }
-
-    @Test
-    public void getIngredientTypeShouldReturnSauce() {
-        IngredientType expectedType = IngredientType.SAUCE;
-        IngredientType actualType = ingredientSauce.getType();
-        assertEquals(expectedType, actualType);
+        MockitoAnnotations.initMocks(this);
+        ingredient = new Ingredient(ingredientType, "Test Ingredient", 1.5f);
     }
     @Test
-    public void getIngredientTypeShouldReturnFilling(){
-        IngredientType expectedType = IngredientType.FILLING;
-        IngredientType actualType = ingredientFilling.getType();
+    public void getIngredientTypeShouldReturnCorrectType() {
+        IngredientType expectedType = ingredientType;
+        IngredientType actualType = ingredient.getType();
         assertEquals(expectedType, actualType);
     }
 }

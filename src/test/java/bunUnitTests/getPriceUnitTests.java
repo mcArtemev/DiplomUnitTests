@@ -1,6 +1,5 @@
 package bunUnitTests;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,6 @@ public class getPriceUnitTests {
     public void init(){
         MockitoAnnotations.initMocks(this);
     }
-    //Test data
     @Mock
     private Bun mockedBun;
     @Test

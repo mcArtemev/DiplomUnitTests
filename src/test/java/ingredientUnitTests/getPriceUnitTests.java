@@ -1,10 +1,8 @@
 package ingredientUnitTests;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
@@ -26,5 +24,6 @@ public class getPriceUnitTests {
         float expectedPrice = 1.5f;
         float actualPrice = ingredient.getPrice();
 
-        assertEquals(expectedPrice, actualPrice, 0.0f);    }
+        assertEquals(expectedPrice, actualPrice, 0.0f);
+    }
 }
