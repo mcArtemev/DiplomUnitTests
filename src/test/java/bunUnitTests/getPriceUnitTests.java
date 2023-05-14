@@ -4,9 +4,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class getPriceUnitTests {
@@ -16,11 +20,17 @@ public class getPriceUnitTests {
         MockitoAnnotations.initMocks(this);
     }
     //Test data
-    Bun whiteBun = new Bun("White", 22.2f);
+    @Mock
+    private Bun mockedBun;
+    @Test
+    public void testGetPriceShouldReturn25f() {
+        Bun bun = new Bun("black bun", 2.5f);
+        assertEquals(2.5f, bun.getPrice(), 0.01);
+    }
 
     @Test
-    public void getBunPriceShouldReturnFloat22point2(){
-        float result = whiteBun.getPrice();
-        Assert.assertTrue("Цена булочки не соответствует ожиданию: \"22.2\". По факту: " + result, result==22.2f);
+    public void testMockedGetPriceShouldReturn3f() {
+        when(mockedBun.getPrice()).thenReturn(3.0f);
+        assertEquals(3.0f, mockedBun.getPrice(), 0.01);
     }
 }

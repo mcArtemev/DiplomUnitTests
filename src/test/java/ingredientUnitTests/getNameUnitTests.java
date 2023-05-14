@@ -1,27 +1,27 @@
 package ingredientUnitTests;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class getNameUnitTests {
+    private Ingredient ingredient;
 
     @Before
-    public void init(){
-        MockitoAnnotations.initMocks(this);
+    public void setUp() {
+        ingredient = new Ingredient(IngredientType.SAUCE, "Ketchup", 1.5f);
     }
-    //Test data
-    Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Ketchup", 12.3f);
 
     @Test
     public void getIngredientNameShouldReturnTomato(){
-        String result = ingredient.getName();
-        Assert.assertTrue("Название ингредиента не соответствует ожиданию \"Ketchup\". По факту: " + result, result.equals("Ketchup"));
+        String expectedName  = "Ketchup";
+        String actualName = ingredient.getName();
+        assertEquals(expectedName, actualName);
     }
 }

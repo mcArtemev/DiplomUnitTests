@@ -4,9 +4,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class getNameUnitTests {
@@ -15,12 +19,19 @@ public class getNameUnitTests {
     public void init(){
         MockitoAnnotations.initMocks(this);
     }
-    //Test data
-    Bun whiteBun = new Bun("White", 22.2f);
+
+    @Mock
+    private Bun mockedBun;
 
     @Test
-    public void getBunNameShouldReturnWhite(){
-        String result = whiteBun.getName();
-        Assert.assertTrue("Название булочки не соответствует ожиданию: \"White\". По факту: " + result, result.equals("White"));
+    public void testGetNameShouldReturnBlackBun() {
+        Bun bun = new Bun("black bun", 2.5f);
+        assertEquals("black bun", bun.getName());
+    }
+
+    @Test
+    public void testMockedGetNameShouldReturnMockerBun() {
+        when(mockedBun.getName()).thenReturn("mocked bun");
+        assertEquals("mocked bun", mockedBun.getName());
     }
 }

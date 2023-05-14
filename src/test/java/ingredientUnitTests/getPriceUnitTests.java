@@ -9,19 +9,22 @@ import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class getPriceUnitTests {
 
+    private Ingredient ingredient;
+
     @Before
-    public void init(){
-        MockitoAnnotations.initMocks(this);
+    public void setUp() {
+        ingredient = new Ingredient(IngredientType.SAUCE, "Ketchup", 1.5f);
     }
-    //Test data
-    Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Ketchup", 12.3f);
 
     @Test
     public void getIngredientPriceShouldReturnFloat12point3(){
-        float result = ingredient.getPrice();
-        Assert.assertTrue("Название ингредиента не соответствует ожиданию \"12.3\". По факту: " + result, result==12.3f);
-    }
+        float expectedPrice = 1.5f;
+        float actualPrice = ingredient.getPrice();
+
+        assertEquals(expectedPrice, actualPrice, 0.0f);    }
 }

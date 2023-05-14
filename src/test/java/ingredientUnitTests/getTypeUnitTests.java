@@ -9,25 +9,29 @@ import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class getTypeUnitTests {
 
+    private Ingredient ingredientSauce;
+    private Ingredient ingredientFilling;
+
     @Before
-    public void init(){
-        MockitoAnnotations.initMocks(this);
-    }
-    //Test data
-    Ingredient ingredientSauce = new Ingredient(IngredientType.SAUCE, "Ketchup", 12.3f);
-    Ingredient ingredientFilling = new Ingredient(IngredientType.FILLING, "Sausage", 12.3f);
+    public void setUp() {
+        ingredientSauce = new Ingredient(IngredientType.SAUCE, "Ketchup", 1.5f);
+        ingredientFilling = new Ingredient(IngredientType.FILLING, "Sausage", 2.5f);    }
 
     @Test
-    public void getIngredientTypeShouldReturnSauce(){
-        IngredientType result = ingredientSauce.getType();
-        Assert.assertTrue("Тип ингредиента не соответствует ожиданию \"SAUCE\". По факту: " + result, result.equals(IngredientType.SAUCE));
+    public void getIngredientTypeShouldReturnSauce() {
+        IngredientType expectedType = IngredientType.SAUCE;
+        IngredientType actualType = ingredientSauce.getType();
+        assertEquals(expectedType, actualType);
     }
     @Test
     public void getIngredientTypeShouldReturnFilling(){
-        IngredientType result = ingredientFilling.getType();
-        Assert.assertTrue("Тип ингредиента не соответствует ожиданию \"FILLING\". По факту: " + result, result.equals(IngredientType.FILLING));
+        IngredientType expectedType = IngredientType.FILLING;
+        IngredientType actualType = ingredientFilling.getType();
+        assertEquals(expectedType, actualType);
     }
 }
